@@ -55,13 +55,13 @@ export default function MarketDiscussion({ market }: { market: Market }) {
     () =>
       createDiscussionsClient({
         baseUrl: getSeerAppUrl(),
-        marketId: market.id,
+        market,
         getAccessToken: () => {
           const token = getAccessToken();
           return isAccessTokenExpired(token) ? '' : token;
         },
       }),
-    [market.id]
+    [market]
   );
 
   const user = isSignedIn && address ? userFromAddress(address) : null;
