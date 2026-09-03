@@ -13,10 +13,19 @@ import { MarketPreviewCard } from '../components/MarketPreviewCard';
 const REBRAND_MARKET_ID = '0xe7850b0d928aa40ab8732BD323Fa4F6Ef3c24B8a';
 
 const PROCESS_STEPS = [
-  { label: 'Ideas become outcomes', emphasis: false, glow: false },
-  { label: 'Traders set the odds', emphasis: false, glow: false },
-  { label: 'Price shows conviction', emphasis: true, glow: false },
-  { label: 'Sponsor keeps final say', emphasis: false, glow: true },
+  {
+    label: 'Call for entries become submissions',
+    emphasis: false,
+    glow: false,
+  },
+  { label: 'Traders set the odds of selection', emphasis: false, glow: false },
+  { label: 'Price becomes a triage tool', emphasis: true, glow: false },
+  { label: 'Sponsor makes final decision', emphasis: false, glow: false },
+  {
+    label: 'Traders earn P&L based on final decision',
+    emphasis: false,
+    glow: true,
+  },
 ] as const;
 
 const PROTOCOL_CARDS = [
@@ -68,21 +77,24 @@ export const Home: React.FC = () => {
       <MainHeader />
       <main className="mx-auto flex w-full min-w-0 max-w-shell flex-1 flex-col px-6 pb-16 lg:px-10">
         {/* Hero */}
-        <section className="home-hero" aria-label="Opportunity Markets">
-          <div className="home-hero-inner mx-auto flex max-w-4xl flex-col items-center text-center">
-            <h1 className="hero-entrance-lead font-display text-[clamp(3rem,7vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-paper">
-              An opinion costs nothing.{' '}
-              <span className="text-up">Being right costs something.</span>
+        <section className="home-hero" aria-label="Curation Markets">
+          <div className="home-hero-inner mx-auto flex w-full max-w-[68rem] flex-col items-center text-center">
+            <h1 className="hero-entrance-lead max-w-4xl font-display text-[clamp(2.5rem,5.5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-paper">
+              With AI, the cost of reviewing work is{' '}
+              <span className="text-up">
+                more than the time it takes to do it
+              </span>
             </h1>
             <p className="hero-entrance-lead mt-5 max-w-2xl text-[clamp(1.25rem,2.2vw,1.5rem)] leading-[1.45] text-paper/90 sm:mt-7">
-              Opportunity Markets turn any decision into a market. Traders put
-              real money on the outcome they believe, the odds move, and sponsors
-              read where the conviction actually is - keeping the final say.
+              Curation Markets turn any selection process into a market. Traders
+              put money behind the submission they think will be selected, the
+              odds move, and sponsors prioritize review on only top rated
+              submissions.
             </p>
 
             <ol
               className="hero-step-rail mt-8 w-full sm:mt-10"
-              aria-label="How opportunity markets work"
+              aria-label="How curation markets work"
             >
               {PROCESS_STEPS.map((step, i) => (
                 <React.Fragment key={step.label}>
@@ -137,12 +149,12 @@ export const Home: React.FC = () => {
             id="protocol-heading"
             className="mt-3 font-display text-[clamp(1.875rem,3vw,2.25rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-paper"
           >
-            Beta today. Permissionless next.
+            Closed beta today. Permissionless tomorrow.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-paper/85 sm:text-lg">
-            Seer runs these first markets to prove the mechanism. The direction
-            of travel is a permissionless layer, where any team, DAO, or sponsor
-            launches an opportunity market directly.
+            Seer is running the first curation market for its Devcon merch. Any
+            team crowdsourcing solutions and wanting to pick from only among the
+            best should directly launch a curation market.
           </p>
 
           <ul className="mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
