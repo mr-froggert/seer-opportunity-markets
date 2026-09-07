@@ -29,7 +29,7 @@ const PROCESS_STEPS = [
 ] as const;
 
 const PROTOCOL_CARDS = [
-  { kicker: 'Today', body: 'Seer operates it' },
+  { kicker: 'Today', body: 'Seer One operates it' },
   { kicker: 'Next', body: 'Anyone launches' },
   { kicker: 'Any decision', body: 'One shared layer' },
 ] as const;
