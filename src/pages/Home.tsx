@@ -77,7 +77,7 @@ export const Home: React.FC = () => {
       <MainHeader />
       <main className="mx-auto flex w-full min-w-0 max-w-shell flex-1 flex-col px-6 pb-16 lg:px-10">
         {/* Hero */}
-        <section className="home-hero" aria-label="Curation Markets">
+        <section className="home-hero" aria-label="Opportunity Markets">
           <div className="home-hero-inner mx-auto flex w-full max-w-[68rem] flex-col items-center text-center">
             <h1 className="hero-entrance-lead max-w-4xl font-display text-[clamp(2.5rem,5.5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-paper">
               With AI, the cost of reviewing work is{' '}
@@ -86,7 +86,7 @@ export const Home: React.FC = () => {
               </span>
             </h1>
             <p className="hero-entrance-lead mt-5 max-w-2xl text-[clamp(1.25rem,2.2vw,1.5rem)] leading-[1.45] text-paper/90 sm:mt-7">
-              Curation Markets turn any selection process into a market. Traders
+              Opportunity Markets turn any selection process into a market. Traders
               put money behind the submission they think will be selected, the
               odds move, and sponsors prioritize review on only top rated
               submissions.
@@ -94,7 +94,7 @@ export const Home: React.FC = () => {
 
             <ol
               className="hero-step-rail mt-8 w-full sm:mt-10"
-              aria-label="How curation markets work"
+              aria-label="How opportunity markets work"
             >
               {PROCESS_STEPS.map((step, i) => (
                 <React.Fragment key={step.label}>
@@ -152,9 +152,9 @@ export const Home: React.FC = () => {
             Closed beta today. Permissionless tomorrow.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-paper/85 sm:text-lg">
-            Seer is running the first curation market for its Devcon merch. Any
+            Seer is running the first opportunity market for its Devcon merch. Any
             team crowdsourcing solutions and wanting to pick from only among the
-            best should directly launch a curation market.
+            best should directly launch an opportunity market.
           </p>
 
           <ul className="mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
