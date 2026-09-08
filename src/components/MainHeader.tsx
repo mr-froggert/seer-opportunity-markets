@@ -60,8 +60,8 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ className = '' }) => {
             className="hidden items-center gap-5 sm:flex"
             aria-label="Page sections"
           >
-            <SectionLink hash="#protocol">The protocol</SectionLink>
             <SectionLink hash="#pilot">The pilot</SectionLink>
+            <SectionLink hash="#protocol">The protocol</SectionLink>
           </nav>
 
           <ConnectKitButton.Custom>

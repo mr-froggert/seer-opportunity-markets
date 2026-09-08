@@ -127,7 +127,7 @@ export const Home: React.FC = () => {
                 Seer Rebrand Market
               </Link>
               <a
-                href="#protocol"
+                href="#pilot"
                 className="inline-flex items-center rounded-full border border-paper/25 bg-transparent px-6 py-3 text-base font-semibold text-paper transition-colors hover:border-up/50 hover:text-up focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-up"
               >
                 Where this goes
@@ -136,56 +136,10 @@ export const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* The protocol */}
-        <section
-          id="protocol"
-          className="scroll-mt-24 border-t border-edge pt-14 sm:pt-20"
-          aria-labelledby="protocol-heading"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-up">
-            The protocol
-          </p>
-          <h2
-            id="protocol-heading"
-            className="mt-3 font-display text-[clamp(1.875rem,3vw,2.25rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-paper"
-          >
-            Closed beta today. Permissionless tomorrow.
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-paper/85 sm:text-lg">
-            Seer is running the first opportunity market for its Devcon merch. Any
-            team crowdsourcing solutions and wanting to pick from only among the
-            best should directly launch an opportunity market.
-          </p>
-
-          <ul className="mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
-            {PROTOCOL_CARDS.map((card) => (
-              <li
-                key={card.kicker}
-                className="lot-panel flex flex-col gap-2 px-5 py-5"
-              >
-                <span className="text-xs font-semibold uppercase tracking-[0.1em] text-up">
-                  {card.kicker}
-                </span>
-                <span className="font-display text-lg font-semibold tracking-tight text-paper">
-                  {card.body}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          <a
-            href="#pilot"
-            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-up transition-colors hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-up"
-          >
-            See the first edition
-            <span aria-hidden>→</span>
-          </a>
-        </section>
-
         {/* The pilot */}
         <section
           id="pilot"
-          className="scroll-mt-24 mt-14 border-t border-edge pt-14 sm:mt-20 sm:pt-20"
+          className="scroll-mt-24 border-t border-edge pt-14 sm:pt-20"
           aria-labelledby="pilot-heading"
           aria-busy={isLoading || isFetching}
         >
@@ -252,6 +206,44 @@ export const Home: React.FC = () => {
             ))}
           </div>
         </section>
+        {/* The protocol */}
+        <section
+          id="protocol"
+          className="scroll-mt-24 mt-14 border-t border-edge pt-14 sm:mt-20 sm:pt-20"
+          aria-labelledby="protocol-heading"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-up">
+            The protocol
+          </p>
+          <h2
+            id="protocol-heading"
+            className="mt-3 font-display text-[clamp(1.875rem,3vw,2.25rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-paper"
+          >
+            Closed beta today. Permissionless tomorrow.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-paper/85 sm:text-lg">
+            Seer is running the first opportunity market for its Devcon merch. Any
+            team crowdsourcing solutions and wanting to pick from only among the
+            best should directly launch an opportunity market.
+          </p>
+
+          <ul className="mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
+            {PROTOCOL_CARDS.map((card) => (
+              <li
+                key={card.kicker}
+                className="lot-panel flex flex-col gap-2 px-5 py-5"
+              >
+                <span className="text-xs font-semibold uppercase tracking-[0.1em] text-up">
+                  {card.kicker}
+                </span>
+                <span className="font-display text-lg font-semibold tracking-tight text-paper">
+                  {card.body}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
       </main>
       <Footer />
     </div>
