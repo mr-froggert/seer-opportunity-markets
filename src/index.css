@@ -14,6 +14,18 @@
   #root {
     min-height: 100vh;
   }
+
+  /* Trade amounts are driven by the preset buttons, not by browser spinners. */
+  input[type='number'] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 /* Seer Night Shell — react-toastify as plaque notices */

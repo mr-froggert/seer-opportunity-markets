@@ -26,8 +26,14 @@ import { ConnectKitButton } from 'connectkit';
 import { toastifyTx } from '../lib/toastify';
 import { TokensDropdown } from './TokensDropdown';
 
+const amountFieldClass =
+  'flex w-full items-center gap-3 rounded-panel border border-edge bg-wall px-4 py-3 transition-colors focus-within:border-up has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:-outline-offset-2 has-[:focus-visible]:outline-up';
+
 const amountInputClass =
-  'w-full rounded-panel border border-edge bg-wall px-4 py-3 pr-20 text-xl font-semibold text-paper placeholder:text-muted/50 focus:border-up focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-up disabled:opacity-60';
+  'min-w-0 flex-1 bg-transparent text-xl font-semibold tabular-nums text-paper caret-up placeholder:text-muted focus:outline-none';
+
+const amountUnitClass =
+  'max-w-[45%] flex-shrink-0 truncate text-xs font-semibold uppercase tracking-[0.08em] text-muted';
 
 const labelClass =
   'text-xs font-semibold uppercase tracking-[0.08em] text-muted';
@@ -495,6 +501,11 @@ export function SwapWidget({
   const amountLabel = mode === 'buy' ? 'Amount' : 'Shares';
   const receiveLabel = mode === 'buy' ? 'You receive' : 'You get';
 
+  // Outcome names run long, so the field and summary denominate in the short
+  // unit and leave the outcome's identity to the Outcome picker above.
+  const amountUnit = mode === 'buy' ? collateralSymbol : 'Shares';
+  const receiveUnit = mode === 'buy' ? 'Shares' : collateralSymbol;
+
   return (
     <div
       className={`lot-panel p-6 md:p-8 ${isDisabled ? 'opacity-90' : ''}`}
@@ -584,10 +595,13 @@ export function SwapWidget({
               Bal: {payBalance}
             </span>
           </div>
-          <div className="relative">
+          <div
+            className={`${amountFieldClass} ${isDisabled ? 'opacity-60' : ''}`}
+          >
             <input
               id="trade-amount"
               type="number"
+              inputMode="decimal"
               placeholder="0.00"
               min="0"
               step="any"
@@ -596,8 +610,8 @@ export function SwapWidget({
               disabled={isDisabled}
               className={amountInputClass}
             />
-            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold uppercase tracking-[0.08em] text-muted">
-              {mode === 'buy' ? collateralSymbol : outcomeToken?.symbol ?? 'Shares'}
+            <span className={amountUnitClass} title={amountUnit}>
+              {amountUnit}
             </span>
           </div>
           <div className="grid grid-cols-4 gap-2">
@@ -638,13 +652,9 @@ export function SwapWidget({
         <div className="flex flex-col gap-2.5 border-t border-edge pt-4">
           <div className="flex justify-between gap-3">
             <span className={labelClass}>{receiveLabel}</span>
-            <span className="font-mono text-sm font-semibold text-paper">
+            <span className="font-mono text-sm font-semibold tabular-nums text-paper">
               {quoteIsLoading && Number(amount) > 0 ? '…' : displayReceiveAmount}{' '}
-              <span className="text-muted">
-                {mode === 'buy'
-                  ? outcomeToken?.symbol ?? ''
-                  : collateralSymbol}
-              </span>
+              <span className="text-muted">{receiveUnit}</span>
             </span>
           </div>
           <div className="flex justify-between gap-3">
