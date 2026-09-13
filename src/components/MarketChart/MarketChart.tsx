@@ -23,17 +23,37 @@ export interface IOutcomeData {
   data: Array<{ time: UTCTimestamp; value: number }>;
 }
 
-/** Seer Night Shell series: lavender up / red down / plaque-edge alternation */
+/**
+ * Series palette: lavender (up) and red (down) lead, then hue-separated tones
+ * that stay legible on the plaque background. No duplicates.
+ */
 const CHART_COLORS = [
-  '#A774D1',
-  '#ea3943',
-  '#8B83A3',
-  '#1e1830',
-  '#520078',
-  '#ea3943',
+  '#A774D1', // up / lavender
+  '#ea3943', // down / red
+  '#F5B843', // amber
+  '#3FB68B', // green
+  '#4FA3F7', // sky
+  '#F27DB2', // pink
+  '#E8865A', // orange
+  '#6BD9D9', // cyan
+  '#C9E265', // lime
+  '#ECE8F5', // paper
+  '#8B83A3', // muted
+  '#7C6BFF', // indigo
 ];
 
 const FALLBACK_SERIES_COLOR = '#8B83A3';
+
+/**
+ * Curated palette first; past its length, rotate the hue by the golden angle
+ * so every additional series still gets a distinct color.
+ */
+function getSeriesColor(index: number): string {
+  const curated = CHART_COLORS[index];
+  if (curated) return curated;
+  const hue = Math.round((index * 137.508) % 360);
+  return `hsl(${hue} 65% 65%)`;
+}
 
 function getSeries(market: Market, chartData: ChartData['chartData']) {
   if (market.type === 'Futarchy') {
@@ -98,7 +118,7 @@ export default function MarketChart({ market }: { market: Market }) {
           series={series.map((serie, index) => ({
             outcome: {
               name: serie.name,
-              color: CHART_COLORS[index % CHART_COLORS.length] ?? FALLBACK_SERIES_COLOR,
+              color: getSeriesColor(index),
             },
             data: serie.data.map((d) => ({
               time: d[0] as UTCTimestamp,
