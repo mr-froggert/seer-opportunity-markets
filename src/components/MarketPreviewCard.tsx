@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import type { Market } from '@seer-pm/sdk';
 import { MarketStatus, getMarketStatus } from '@seer-pm/sdk';
 import { formatBigNumbers } from '../utils/format';
-import { useOddsDelta } from '../hooks/useOddsDelta';
 import { getMarketDisplayTitle } from '../config/market';
 import DesignCarousel from './DesignCarousel';
 
@@ -78,24 +77,16 @@ export const MarketPreviewCard: React.FC<MarketPreviewCardProps> = ({
   const {
     label: leadingLabel,
     displayPrice,
-    percent,
     leadingIndex,
     outcomes,
     ranked,
   } = getBestOddsOutcome(market);
 
-  const marketKey = `${market.chainId}-${market.id}`;
-  const { direction } = useOddsDelta(marketKey, percent);
-
   const isClosed = getMarketStatus(market) === MarketStatus.CLOSED;
   const marketStatusText = isClosed ? 'Closed' : 'Active';
 
   const oddsClass =
-    direction === 'up'
-      ? 'bid-tick-up font-mono text-2xl font-semibold tabular-nums text-up md:text-3xl'
-      : direction === 'down'
-        ? 'bid-tick-down font-mono text-2xl font-semibold tabular-nums text-down md:text-3xl'
-        : 'font-mono text-2xl font-semibold tabular-nums text-paper md:text-3xl';
+    'font-mono text-2xl font-semibold tabular-nums text-paper md:text-3xl';
 
   const total = outcomes.reduce((sum, o) => sum + o.percent, 0);
   const hasOdds = total > 0;
@@ -211,17 +202,6 @@ export const MarketPreviewCard: React.FC<MarketPreviewCardProps> = ({
           </span>
           <div className="inline-flex flex-wrap items-baseline gap-x-2 gap-y-1">
             <span className={oddsClass}>{displayPrice ?? '—'}</span>
-            {hasLeader && direction !== 'flat' && (
-              <span
-                className={
-                  direction === 'up'
-                    ? 'text-xs font-semibold uppercase tracking-[0.08em] text-up'
-                    : 'text-xs font-semibold uppercase tracking-[0.08em] text-down'
-                }
-              >
-                {direction === 'up' ? 'Up' : 'Down'}
-              </span>
-            )}
           </div>
         </div>
         <span className="text-xs font-semibold uppercase tracking-[0.08em] text-up transition-colors group-hover:text-paper">

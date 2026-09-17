@@ -7,7 +7,6 @@ import type { Market } from '@seer-pm/sdk';
 import MarketChart from './MarketChart/MarketChart';
 import MarketDiscussion from './MarketDiscussion';
 import SubmissionLightbox from './SubmissionLightbox';
-import { useOddsDelta } from '../hooks/useOddsDelta';
 import {
   getOutcomeSubmissionAssets,
   type SubmissionAssets,
@@ -85,10 +84,6 @@ function OutcomeCard({
   );
 
   const percent = Math.round(Number(odds));
-  const { direction } = useOddsDelta(
-    `${market.chainId}-${market.id}-o${outcomeIndex}`,
-    percent
-  );
   const balanceFormatted = account
     ? Number(formatUnits(balance, WRAPPED_OUTCOME_TOKEN_DECIMALS)).toFixed(2)
     : '0.00';
@@ -98,12 +93,7 @@ function OutcomeCard({
     ? Math.min(Math.max(percent, 0), 100)
     : 0;
 
-  const oddsClass =
-    direction === 'up'
-      ? 'bid-tick-up font-mono text-xl font-semibold tabular-nums text-up'
-      : direction === 'down'
-        ? 'bid-tick-down font-mono text-xl font-semibold tabular-nums text-down'
-        : 'font-mono text-xl font-semibold tabular-nums text-paper';
+  const oddsClass = 'font-mono text-xl font-semibold tabular-nums text-paper';
 
   const hasImages = (assets?.images.length ?? 0) > 0;
   const hasPdf = Boolean(assets?.pdfUrl);
@@ -195,13 +185,7 @@ function OutcomeCard({
         aria-hidden
       >
         <div
-          className={
-            direction === 'up'
-              ? 'h-full rounded-control bg-up'
-              : direction === 'down'
-                ? 'h-full rounded-control bg-down'
-                : 'h-full rounded-control bg-paper/35'
-          }
+          className="h-full rounded-control bg-paper/35"
           style={{ width: `${barWidth}%` }}
         />
       </div>
